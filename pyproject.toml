@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-aware-image-decorruption"
+version = "0.2.0"
+description = "Task-aware image restoration for robust semantic segmentation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+  "matplotlib>=3.8",
+  "numpy>=1.26",
+  "opencv-python>=4.9",
+  "Pillow>=10.0",
+  "python-docx>=1.1",
+  "PyYAML>=6.0",
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "tqdm>=4.66",
+  "transformers>=4.40",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+decorrupt-smoke = "task_aware_decorruption.cli.smoke_test:main"
+decorrupt-validate-data = "task_aware_decorruption.cli.validate_dataset:main"
+decorrupt-train-segmenter = "task_aware_decorruption.cli.train_segmenter:main"
+decorrupt-train = "task_aware_decorruption.cli.train_decorrupter:main"
+decorrupt-evaluate = "task_aware_decorruption.cli.evaluate:main"
+decorrupt-evaluate-restoration = "task_aware_decorruption.cli.evaluate_restoration:main"
+decorrupt-view-reconstruction = "task_aware_decorruption.cli.view_reconstruction:main"
+decorrupt-plot-loss-landscape = "task_aware_decorruption.cli.plot_loss_landscape:main"
+decorrupt-benchmark = "task_aware_decorruption.cli.benchmark:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

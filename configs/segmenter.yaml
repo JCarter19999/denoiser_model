@@ -1,0 +1,25 @@
+seed: 42
+device: auto
+output_dir: outputs/segmenter
+
+data:
+  root: data/acdc
+  train_split: train
+  val_split: val
+  image_size: [512, 1024]
+  batch_size: 2
+  workers: 4
+  ignore_index: 255
+
+model:
+  pretrained_name: nvidia/segformer-b0-finetuned-cityscapes-1024-1024
+  num_classes: 19
+
+training:
+  epochs: 20
+  learning_rate: 0.00006
+  weight_decay: 0.01
+  amp: true
+  grad_clip: 1.0
+  patience: 5
+

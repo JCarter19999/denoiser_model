@@ -1,0 +1,33 @@
+seed: 42
+device: auto
+mode: task_aware
+output_dir: outputs/test_task_aware
+data:
+  root: data/acdc
+  split: train
+  clean_root: data/acdc/rgb_anon
+  clean_glob: "*/train_ref/*_rgb_ref_anon.png"
+  image_size:
+  - 256
+  - 512
+  batch_size: 1
+  workers: 0
+  ignore_index: 255
+model:
+  pretrained_name: nvidia/segformer-b0-finetuned-cityscapes-1024-1024
+  num_classes: 19
+  segmenter_checkpoint: outputs/test_segmenter/best.pt
+  decorrupter_init: outputs/test_restoration/best.pt
+  base_channels: 24
+  residual_scale: 0.25
+training:
+  epochs: 1
+  learning_rate: 5.0e-05
+  weight_decay: 0.0001
+  amp: true
+  grad_clip: 1.0
+loss:
+  segmentation: 1.0
+  identity: 0.1
+  smoothness: 0.01
+

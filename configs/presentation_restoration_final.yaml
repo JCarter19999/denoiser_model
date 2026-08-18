@@ -1,0 +1,29 @@
+seed: 42
+device: auto
+mode: restoration
+output_dir: outputs/presentation_restoration_final
+
+data:
+  clean_root: data/acdc/rgb_anon
+  clean_glob: "*/train_ref/*_rgb_ref_anon.png"
+  image_size: [256, 512]
+  batch_size: 4
+  workers: 4
+  corruption_severity: [0.25, 0.8]
+
+model:
+  base_channels: 24
+  residual_scale: 0.25
+  decorrupter_init: outputs/presentation_restoration/last.pt
+
+training:
+  epochs: 9
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+  amp: true
+  grad_clip: 1.0
+
+loss:
+  l1: 1.0
+  ssim: 0.25
+  smoothness: 0.01

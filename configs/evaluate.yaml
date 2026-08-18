@@ -1,0 +1,24 @@
+seed: 42
+device: auto
+output_dir: outputs/evaluation
+
+data:
+  root: data/acdc
+  split: val
+  image_size: [512, 1024]
+  batch_size: 1
+  workers: 4
+  ignore_index: 255
+
+model:
+  pretrained_name: nvidia/segformer-b0-finetuned-cityscapes-1024-1024
+  num_classes: 19
+  segmenter_checkpoint: outputs/segmenter/best.pt
+  base_channels: 24
+  residual_scale: 0.25
+
+classical:
+  clahe_clip_limit: 2.0
+  clahe_grid_size: 8
+  adaptive_gamma: true
+

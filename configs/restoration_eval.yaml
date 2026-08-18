@@ -1,0 +1,16 @@
+seed: 42
+device: auto
+output_dir: outputs/restoration_evaluation
+
+data:
+  clean_root: data/acdc/rgb_anon
+  clean_glob: "*/val_ref/*_rgb_ref_anon.png"
+  image_size: [384, 768]
+  batch_size: 4
+  workers: 4
+  corruption_severity: [0.25, 0.8]
+
+model:
+  base_channels: 24
+  residual_scale: 0.25
+
