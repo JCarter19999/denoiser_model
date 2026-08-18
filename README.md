@@ -2,6 +2,10 @@
 
 Research code for testing whether a lightweight restoration front end improves semantic segmentation on adverse-condition driving images.
 
+Autonomous-driving perception degrades when cameras encounter rain, fog, snow, low light, glare, or sensor noise. Rather than treating restoration as an end in itself, this project asks whether a small learned image-decorrupter can make those inputs more useful to a downstream semantic-segmentation model. Experiments use ACDC driving images, controlled synthetic corruptions, and a SegFormer segmenter to compare raw inputs, classical enhancement, generic reconstruction, and task-aware restoration under a common evaluation protocol.
+
+The central research question is whether optimizing restoration with semantic-task feedback preserves road-scene information better than optimizing only for pixel similarity. The task-aware model combines reconstruction objectives with a frozen segmenter's loss, encouraging outputs that remain useful for recognizing scene classes while identity and smoothness regularization discourage unnecessary visual changes. The resulting evaluation reports reconstruction quality alongside mIoU and pixel accuracy, making clear where visually plausible cleanup does -- and does not -- transfer to perception performance.
+
 ## Methods
 
 - No preprocessing
